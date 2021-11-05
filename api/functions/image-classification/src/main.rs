@@ -3,12 +3,13 @@ use std::io::{self, Read};
 
 pub fn main() {
     let model_data: &[u8] = include_bytes!("models/cassava/cassava1.tflite");
-    let labels = include_str!("models/cassava/disease_map.json");
+    // let labels = include_str!("models/cassava/disease_map.json");
 
     let mut buf = Vec::new();
     io::stdin().read_to_end(&mut buf).unwrap();
 
     let flat_img = wasmedge_tensorflow_interface::load_jpg_image_to_rgb8(&buf, 224, 224);
+    println!("flat-img {:?} ", flat_img);
 
     let mut session = wasmedge_tensorflow_interface::Session::new(&model_data, wasmedge_tensorflow_interface::ModelType::TensorFlowLite);
     session.add_input("input", &flat_img, &[1, 224, 224, 3])
