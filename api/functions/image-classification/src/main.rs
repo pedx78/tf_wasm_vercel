@@ -13,7 +13,7 @@ pub fn main() {
     let mut session = wasmedge_tensorflow_interface::Session::new(&model_data, wasmedge_tensorflow_interface::ModelType::TensorFlowLite);
     session.add_input("input", &flat_img, &[1, 224, 224, 3])
            .run();
-    let res_vec: Vec<u8> = session.get_output("MobilenetV1/Predictions/Reshape_1");
+    let res_vec: Vec<u8> = session.get_output("MobilenetV1/Predictions/Softmax");
 
     println!("It is {:?} ", res_vec);
     // let mut i = 0;
