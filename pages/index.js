@@ -17,7 +17,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Leaf Classifier 3
+          Leaf Classifier 4
         </h1>
 
         <div className={styles.operating}>
